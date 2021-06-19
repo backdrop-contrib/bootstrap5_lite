@@ -163,6 +163,12 @@ div.tabs {
 ul.action-links i.fa {
   padding-right: 10px;
 }
+nav.tabs .nav-tabs a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+
 
 /* Fix icons for collapsibel fieldset. */
 .js fieldset.collapsible .fieldset-title {

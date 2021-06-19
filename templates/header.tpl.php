@@ -23,7 +23,7 @@
   <div class="<?php print $container_class;?>">
     <div class="navbar-header">
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -43,10 +43,8 @@
     
     <?php if ($navigation or $menu): ?>
       <div class="navbar-collapse collapse">
-        <nav role="navigation">
-        <?php if ($navigation) print $navigation; ?>
         <?php if ($menu) print $menu; ?>
-        </nav>
+        <?php if ($navigation) print $navigation; ?>
       </div>
     <?php endif; ?>
   </div>

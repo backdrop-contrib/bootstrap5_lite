@@ -1,14 +1,14 @@
-Bootstrap Lite
+Bootstrap 5 Lite
 ==============
 
-This is a clean and minimal Backdrop-oriented Bootstrap 3-based theme inspired by the Drupal [Bootstrap](https://www.drupal.org/project/bootstrap) theme. It is a totally separate project from the Drupal [Bootstrap](https://www.drupal.org/project/bootstrap) theme with no guaranteed compatibility between the two themes.
+This is a Bootstrap 5 version of the Backdrop Bootstrap Lite theme, which is itself inspired by the Drupal [Bootstrap](https://www.drupal.org/project/bootstrap) theme. It is a totally separate project from the Drupal [Bootstrap](https://www.drupal.org/project/bootstrap) theme with no guaranteed compatibility between the two themes.
 
 This theme is still in beta and is subject to changes that may break your theme during upgrade. We recommend that you only upgrade if necessary or if you are prepared to fix minor changes. With the change in maintainership on Feb 5, 2021, we are hoping to cut a stable release ASAP.
 
 Features
 --------
 
-1. [BootstrapCDN](http://bootstrapcdn.com/) based.
+1. [JSDelivr.net](http://jsdelivr.net/) based.
 2. [Bootswatch](http://bootswatch.com) support (via BootstrapCDN) included. Easy to pick a Bootswatch free theme.
 3. [FontAwesome](https://fortawesome.github.io/Font-Awesome/) support included.
 4. Other tweaks:
@@ -28,7 +28,7 @@ Installation
 Documentation
 -------------
 
-Additional documentation is located in [the Wiki](https://github.com/backdrop-contrib/bootstrap_lite/wiki/Documentation).
+Additional documentation is located in [the Wiki](https://github.com/backdrop-contrib/bootstrap5_lite/wiki/Documentation).
 
 Differences from Drupal 7
 -------------------------
@@ -44,18 +44,19 @@ These features were dropped in the port from the Drupal Bootstrap theme:
 Issues
 ------
 
-Bugs and feature requests should be reported in [the Issue Queue](https://github.com/backdrop-contrib/bootstrap_lite/issues).
+Bugs and feature requests should be reported in [the Issue Queue](https://github.com/backdrop-contrib/bootstrap5_lite/issues).
 
 Current Maintainers
 -------------------
 
-- [Tim Erickson](https://github.com/stpaultim),  [https://www.simplo.site](https://www.simplo.site)
-- [Robert J. Lang](https://github.com/bugfolder)
+- [Andy Shillingford](https://github.com/docwilmot)
 
 Credits
 -------
 
 Thanks to the Drupal [Bootstrap theme authors](http://drupal.org/node/259843/committers).
+And the Backdrop Lite maintainers: - [Tim Erickson](https://github.com/stpaultim), [https://www.simplo.site](https://www.simplo.site)
+- [Robert J. Lang](https://github.com/bugfolder)
 
 
 License
