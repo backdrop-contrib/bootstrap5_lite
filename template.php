@@ -201,16 +201,35 @@ function bootstrap5_lite_links__header_menu($menu){
 }
 
 /**
+ * Implements hook_links().
+ */
+function bootstrap5_lite_links__user_menu($menu){
+    dpm($menu);
+  $menu['attributes']['class'] = array('menu','nav','navbar-nav');
+  if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')){
+    $menu['attributes']['class'][] = $navbar_menu_position;
+  }
+  foreach ($menu['links'] as $item => $link) {
+    $menu['links'][$item]['attributes']['class'][] = 'nav-link';
+  }
+    
+  return theme_links($menu);
+}
+
+/**
  * Implements hook_menu_tree().
  */
 function bootstrap5_lite_menu_tree__user_menu($variables){
   if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu')){
+    $menu = menu_navigation_links('user-menu');
+    $links = $menu ? theme('links__user_menu', array('links' => $menu)) : NULL;
+
     return '
 <div class="menu nav navbar-nav ms-md-auto dropstart">
   <div class="dropdown">
     <div data-toggle="dropdown" data-bs-toggle="dropdown"><i class="fa fa-cog"></i></div>
     <ul class="dropdown-menu">
-    ' . $variables['tree'] . '
+    ' . $links . '
     </ul>
   </div>
 </div>';
@@ -654,12 +673,20 @@ function bootstrap5_lite_menu_local_tasks(&$variables) {
   $output = '';
 
   if (!empty($variables['primary'])) {
+    // Consider overriding theme_menu_local_task() instead?
+    foreach ($variables['primary'] as $key => $item) {
+      $variables['primary'][$key]['#link']['localized_options']['attributes']['class'][] = 'nav-link';
+    }
+      
     $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
     $variables['primary']['#prefix'] .= '<ul class="nav nav-tabs tabs-primary">';
     $variables['primary']['#suffix'] = '</ul>';
     $output .= backdrop_render($variables['primary']);
   }
   if (!empty($variables['secondary'])) {
+    foreach ($variables['secondary'] as $key => $item) {
+      $variables['secondary'][$key]['#link']['localized_options']['attributes']['class'][] = 'nav-link';
+    }
     $variables['secondary']['#prefix'] = '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
     $variables['secondary']['#prefix'] .= '<ul class="nav nav-pills secondary">';
     $variables['secondary']['#suffix'] = '</ul>';
