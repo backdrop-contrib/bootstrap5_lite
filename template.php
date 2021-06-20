@@ -204,12 +204,13 @@ function bootstrap5_lite_links__header_menu($menu){
  * Implements hook_links().
  */
 function bootstrap5_lite_links__user_menu($menu){
-  $menu['attributes']['class'] = array('menu','nav','navbar-nav');
+  //$menu['attributes']['class'] = array('menu','nav','navbar-nav');
   if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')){
     $menu['attributes']['class'][] = $navbar_menu_position;
+    $menu['attributes']['class'][] = 'dropdown-menu';
   }
   foreach ($menu['links'] as $item => $link) {
-    $menu['links'][$item]['attributes']['class'][] = 'nav-link';
+    $menu['links'][$item]['attributes']['class'][] = 'dropdown-item';
   }
     
   return theme_links($menu);
@@ -222,14 +223,11 @@ function bootstrap5_lite_menu_tree__user_menu($variables){
   if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu')){
     $menu = menu_navigation_links('user-menu');
     $links = $menu ? theme('links__user_menu', array('links' => $menu)) : NULL;
-
     return '
 <div class="menu nav navbar-nav ms-md-auto dropstart">
   <div class="dropdown">
     <div data-toggle="dropdown" data-bs-toggle="dropdown"><i class="fa fa-cog"></i></div>
-    <ul class="dropdown-menu">
     ' . $links . '
-    </ul>
   </div>
 </div>';
   }
