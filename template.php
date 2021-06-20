@@ -204,7 +204,6 @@ function bootstrap5_lite_links__header_menu($menu){
  * Implements hook_links().
  */
 function bootstrap5_lite_links__user_menu($menu){
-    dpm($menu);
   $menu['attributes']['class'] = array('menu','nav','navbar-nav');
   if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')){
     $menu['attributes']['class'][] = $navbar_menu_position;
