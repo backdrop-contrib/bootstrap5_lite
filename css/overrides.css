@@ -225,10 +225,10 @@ nav.tabs .nav-tabs a {
 }
 
 .js fieldset.collapsible .fieldset-title:before {
-  content: "\e252";
-  font-family: 'Glyphicons Halflings';
+  content: "\f0d7";
+  font-family: 'Fontawesome';
   font-style: normal;
-  font-size: 13px;
+  font-size: 25px;
   padding-right: 10px;
 }
 
@@ -238,10 +238,10 @@ nav.tabs .nav-tabs a {
 }
 
 .js fieldset.collapsed .fieldset-title:before {
-  content: "\e250";
-  font-family: 'Glyphicons Halflings';
+  content: "\f0da";
+  font-family: 'Fontawesome';
   font-style: normal;
-  font-size: 13px;
+  font-size: 25px;
   padding-right: 10px;
 }
 
