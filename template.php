@@ -246,20 +246,21 @@ function bootstrap5_lite_menu_tree__user_menu($variables){
  * @ingroup themeable
  */
 function bootstrap5_lite_fieldset($variables) {
-  if(isset($variables['element']['#group_fieldset']) && !empty($variables['element']['#group_fieldset'])){
+  //dpm($variables);
+  if(isset($variables['element']['#group_fieldset']) && !empty($variables['element']['#group_fieldset']) || !empty($variables['element']['#groups']['vertical_tabs'])){
     return theme_fieldset($variables);
   }
   $element = $variables['element'];
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
-  $element['#attributes']['class'][] = 'panel';
-  $element['#attributes']['class'][] = 'panel-default';
+  $element['#attributes']['class'][] = 'card';
+  $element['#attributes']['class'][] = 'card-default';
   $output = '<fieldset' . backdrop_attributes($element['#attributes']) . '>';
   if (!empty($element['#title'])) {
     // Always wrap fieldset legends in a SPAN for CSS positioning.
-    $output .= '<legend class="panel-heading"><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
+    $output .= '<legend class="card-header"><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
   }
-  $output .= '<div class="fieldset-wrapper panel-body">';
+  $output .= '<div class="fieldset-wrapper card-body">';
   if (!empty($element['#description'])) {
     $output .= '<div class="fieldset-description">' . $element['#description'] . '</div>';
   }
