@@ -927,3 +927,17 @@ function bootstrap5_lite_preprocess_node(&$variables){
     $variables['timeago'] = t('@time ago', array('@time' => format_interval(time() - $node->created)));
   }
 }
+
+function bootstrap5_lite_progress_bar($variables) {
+  $output = '<div id="progress">';
+  $output = '<div class="progress">';
+  $output .= '  <div class="progress-bar" role="progressbar" style="width: ' . $variables['percent'] . '%" aria-valuenow="' . $variables['percent'] . '" aria-valuemin="0" aria-valuemax="100"></div>';
+  $output .= '</div>';
+  $output .= '<div class="d-flex justify-content-between">';
+  $output .= '<div class="message">' . $variables['message'] . '</div>';
+  $output .= '<div class="percentage">' . $variables['percent'] . '%</div>';
+  $output .= '</div>';
+  $output .= '</div>';
+
+  return $output;
+}
