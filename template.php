@@ -749,9 +749,9 @@ function bootstrap5_lite_breadcrumb($variables) {
     $count = 1;
     foreach($breadcrumb as $item){
       if($count == count($breadcrumb)){
-        $output .= '<li class="active">' . $item . '</li>';
+        $output .= '<li class="breadcrumb-item" class="active">' . $item . '</li>';
       }else{
-        $output .= '<li>' . $item . '</li>';
+        $output .= '<li class="breadcrumb-item">' . $item . '</li>';
       }
       $count ++;
     }
