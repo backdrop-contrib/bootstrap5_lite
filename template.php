@@ -81,9 +81,9 @@ function bootstrap5_lite_js_alter(&$js) {
 /**
  * Internal function to make sure Header block is rendered.
  */
-function bootstrap5_lite_is_header($set){
+function bootstrap5_lite_is_header($set) {
   static $is_header;
-  if(0 == strcmp($set, 'get') ){
+  if(0 == strcmp($set, 'get') ) {
     return $is_header;
   } else{
     $is_header = $set;
@@ -97,8 +97,8 @@ function bootstrap5_lite_preprocess_layout(&$variables) {
   $layout = $variables['layout'];
   $layout_name = $layout->layout;
 
-  foreach($layout->content as $key => $block){
-    if($block->module == 'system' && $block->delta == 'header'){
+  foreach($layout->content as $key => $block) {
+    if($block->module == 'system' && $block->delta == 'header') {
       bootstrap5_lite_is_header(true);
     }
   }
@@ -106,17 +106,17 @@ function bootstrap5_lite_preprocess_layout(&$variables) {
   // Default Backdrop layouts contain both .container and .container-fluid.
   // Remove the one we're not using.
   if (theme_get_setting('bootstrap5_lite_container') == 'container') {
-    backdrop_add_js('(function($){ $(".container.container-fluid").removeClass("container-fluid");})(jQuery);', array('type' => 'inline', 'scope' => 'footer'));
+    backdrop_add_js('(function($) { $(".container.container-fluid").removeClass("container-fluid");})(jQuery);', array('type' => 'inline', 'scope' => 'footer'));
   }
   else {
-    backdrop_add_js('(function($){ $(".container.container-fluid").removeClass("container");})(jQuery);', array('type' => 'inline', 'scope' => 'footer'));
+    backdrop_add_js('(function($) { $(".container.container-fluid").removeClass("container");})(jQuery);', array('type' => 'inline', 'scope' => 'footer'));
   }
 }
 
 /**
  * Implements hook_preprocess_page().
  */
-function bootstrap5_lite_preprocess_page(&$variables){
+function bootstrap5_lite_preprocess_page(&$variables) {
   $no_old_ie_compatibility_modes = array(
     '#tag' => 'meta',
     '#attributes' => array(
@@ -137,16 +137,15 @@ function bootstrap5_lite_preprocess_page(&$variables){
     if (function_exists('admin_bar_suppress') && user_access('access administration bar') && !admin_bar_suppress(FALSE)) {
       $variables['classes'][] = 'navbar-admin-bar';
     }
-    if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position')) 
-    {
+    if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position')) {
       $variables['classes'][] = 'navbar-is-' . $navbar_position;
 
        $config = config('admin_bar.settings');
 
-      if(function_exists('admin_bar_suppress') &&  $navbar_position == 'fixed-top' && user_access('access administration bar') && !admin_bar_suppress(FALSE) && !$config->get('position_fixed') ){
+      if(function_exists('admin_bar_suppress') &&  $navbar_position == 'fixed-top' && user_access('access administration bar') && !admin_bar_suppress(FALSE) && !$config->get('position_fixed') ) {
         backdrop_add_js(backdrop_get_path('theme', 'bootstrap5_lite') . '/js/navbar-fixed-top.js');
       }
-      if($navbar_position == 'static-top'){
+      if($navbar_position == 'static-top') {
         backdrop_add_js(backdrop_get_path('theme', 'bootstrap5_lite') . '/js/navbar-static-top.js');
       }
     }
@@ -156,7 +155,7 @@ function bootstrap5_lite_preprocess_page(&$variables){
 /**
  * Implements hook_preprocess_header().
  */
-function bootstrap5_lite_preprocess_header(&$variables){
+function bootstrap5_lite_preprocess_header(&$variables) {
   $variables['navigation'] = '';
 
   if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu'))
@@ -189,9 +188,9 @@ function bootstrap5_lite_preprocess_header(&$variables){
 /**
  * Implements hook_links().
  */
-function bootstrap5_lite_links__header_menu($menu){
+function bootstrap5_lite_links__header_menu($menu) {
   $menu['attributes']['class'] = array('menu','nav','navbar-nav');
-  if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')){
+  if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')) {
     $menu['attributes']['class'][] = $navbar_menu_position;
   }
   foreach ($menu['links'] as $item => $link) {
@@ -204,9 +203,9 @@ function bootstrap5_lite_links__header_menu($menu){
 /**
  * Implements hook_links().
  */
-function bootstrap5_lite_links__user_menu($menu){
+function bootstrap5_lite_links__user_menu($menu) {
   //$menu['attributes']['class'] = array('menu','nav','navbar-nav');
-  if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')){
+  if($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')) {
     $menu['attributes']['class'][] = $navbar_menu_position;
     $menu['attributes']['class'][] = 'dropdown-menu';
   }
@@ -220,8 +219,8 @@ function bootstrap5_lite_links__user_menu($menu){
 /**
  * Implements hook_menu_tree().
  */
-function bootstrap5_lite_menu_tree__user_menu($variables){
-  if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu')){
+function bootstrap5_lite_menu_tree__user_menu($variables) {
+  if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu')) {
     $menu = menu_navigation_links('user-menu');
     $links = $menu ? theme('links__user_menu', array('links' => $menu)) : NULL;
     return '
@@ -248,7 +247,7 @@ function bootstrap5_lite_menu_tree__user_menu($variables){
  */
 function bootstrap5_lite_fieldset($variables) {
   //dpm($variables);
-  if(isset($variables['element']['#group_fieldset']) && !empty($variables['element']['#group_fieldset']) || !empty($variables['element']['#groups']['vertical_tabs'])){
+  if(isset($variables['element']['#group_fieldset']) && !empty($variables['element']['#group_fieldset']) || !empty($variables['element']['#groups']['vertical_tabs'])) {
     return theme_fieldset($variables);
   }
   $element = $variables['element'];
@@ -286,23 +285,23 @@ function bootstrap5_lite_fieldset($variables) {
  */
 function bootstrap5_lite_button($variables) {
 
-  if(isset($variables['element']['#attributes']['class'])){
+  if(isset($variables['element']['#attributes']['class'])) {
     $default = TRUE;
-    foreach($variables['element']['#attributes']['class'] as $key => $class){
-      if(FALSE !== strpos($class, 'secondary')){
-        if($variables['element']['#id'] == 'edit-delete'){
+    foreach($variables['element']['#attributes']['class'] as $key => $class) {
+      if(FALSE !== strpos($class, 'secondary')) {
+        if($variables['element']['#id'] == 'edit-delete') {
           $variables['element']['#attributes']['class'][$key] = 'btn-danger';
           $default = FALSE;
         }else{
           $class = $variables['element']['#attributes']['class'][$key] = str_replace('secondary', 'default', $class);
         }
       }
-      if(FALSE !== strpos($class, 'button')){
+      if(FALSE !== strpos($class, 'button')) {
         $variables['element']['#attributes']['class'][$key] = str_replace('button', 'btn', $class);
         $default = FALSE;
       }
     }
-    if($default){
+    if($default) {
       $variables['element']['#attributes']['class'][] = 'btn-default';
     }
   } else{
@@ -407,22 +406,22 @@ function bootstrap5_lite_textarea($variables) {
  *
  * @ingroup themeable
  */
-function bootstrap5_lite_form_element($variables){
-  if(isset($variables['element']['#type'])){
-    if($variables['element']['#type'] == 'checkbox'){
+function bootstrap5_lite_form_element($variables) {
+  if(isset($variables['element']['#type'])) {
+    if($variables['element']['#type'] == 'checkbox') {
       $variables['element']['#wrapper_attributes']['class'][] = 'checkbox';
     }
-    if($variables['element']['#type'] == 'radio'){
+    if($variables['element']['#type'] == 'radio') {
       $variables['element']['#wrapper_attributes']['class'][] = 'radio';
     }
   }
   $description = FALSE;
-  if(isset($variables['element']['#description'])){
+  if(isset($variables['element']['#description'])) {
     $description = $variables['element']['#description'];
     unset($variables['element']['#description']);
   }
   $output = theme_form_element($variables);
-  if($description){
+  if($description) {
     $output .= '<div class="description help-block">' . $description . "</div>\n";
   }
   return $output;
@@ -457,7 +456,7 @@ function bootstrap5_lite_password($variables) {
  */
 function bootstrap5_lite_search($variables) {
 
-  if(isset($variables['element']['#attributes']['placeholder']) && $variables['element']['#attributes']['placeholder'] == t('Menu search')){
+  if(isset($variables['element']['#attributes']['placeholder']) && $variables['element']['#attributes']['placeholder'] == t('Menu search')) {
     return theme_search($variables);
   }
 
@@ -481,7 +480,7 @@ function bootstrap5_lite_search($variables) {
  * @ingroup themeable
  */
 function bootstrap5_lite_select($variables) {
-  if(isset($variables['element']['#size'])){
+  if(isset($variables['element']['#size'])) {
     unset($variables['element']['#size']);
   }
   $variables['element']['#attributes']['class'][] = 'form-control';
@@ -698,8 +697,8 @@ function bootstrap5_lite_menu_local_tasks(&$variables) {
 /**
  * Implements hook_links().
  */
-function bootstrap5_lite_links__dropbutton($menu){
-  foreach($menu['links'] as $name => $settings){
+function bootstrap5_lite_links__dropbutton($menu) {
+  foreach($menu['links'] as $name => $settings) {
     $menu['links'][$name]['attributes']['class'][] = 'btn';
     $menu['links'][$name]['attributes']['class'][] = 'btn-default';
   }
@@ -710,8 +709,8 @@ function bootstrap5_lite_links__dropbutton($menu){
  * Returns rendered HTML for the local actions.
  */
 function bootstrap5_lite_menu_local_actions(&$variables) {
-  foreach($variables['actions'] as $key => $link){
-    switch($link['#link']['path']){
+  foreach($variables['actions'] as $key => $link) {
+    switch($link['#link']['path']) {
       case 'admin/people/create':
           $variables['actions'][$key]['#link']['title'] =  '<i class="fa fa-user-plus"></i>' . $link['#link']['title'];
           $variables['actions'][$key]['#link']['options']['html'] = TRUE;
@@ -748,8 +747,8 @@ function bootstrap5_lite_breadcrumb($variables) {
     $output .= '<h2 class="element-invisible">' . t('You are here') . '</h2>';
     $output .= '<ol  class="breadcrumb" >';
     $count = 1;
-    foreach($breadcrumb as $item){
-      if($count == count($breadcrumb)){
+    foreach($breadcrumb as $item) {
+      if($count == count($breadcrumb)) {
         $output .= '<li class="breadcrumb-item" class="active">' . $item . '</li>';
       }else{
         $output .= '<li class="breadcrumb-item">' . $item . '</li>';
@@ -794,7 +793,7 @@ function bootstrap5_lite_preprocess_breadcrumb(&$variables) {
  * @ingroup themeable
  */
 function bootstrap5_lite_container($variables) {
-  if(isset($variables['element']['#attributes']['class'][0]) && $variables['element']['#attributes']['class'][0] == 'views-display-column'){
+  if(isset($variables['element']['#attributes']['class'][0]) && $variables['element']['#attributes']['class'][0] == 'views-display-column') {
     $variables['element']['#attributes']['class'] = array('col-xs-12','cols-sm-12', 'col-md-4');
   }
   return theme_container($variables);
@@ -812,11 +811,11 @@ function bootstrap5_lite_preprocess_views_view_table(&$variables) {
  */
 function bootstrap5_lite_form_alter(array &$form, array &$form_state = array(), $form_id = NULL) {
   if ($form_id) {
-    if(isset($form['actions']['cancel']) && isset($form['actions']['cancel']['#type']) && $form['actions']['cancel']['#type'] == 'link'){
+    if(isset($form['actions']['cancel']) && isset($form['actions']['cancel']['#type']) && $form['actions']['cancel']['#type'] == 'link') {
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn';
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn-default';
     }
-    if(isset($form['actions']['cancel_form']) && $form['actions']['cancel_form']['#type'] == 'link'){
+    if(isset($form['actions']['cancel_form']) && $form['actions']['cancel_form']['#type'] == 'link') {
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn';
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn-default';
     }
@@ -836,7 +835,7 @@ function bootstrap5_lite_node_add_list($variables) {
     $output = '<ul class="list-group">';
     foreach ($content as $item) {
       $title = '<h4 class="list-group-item-heading">' . $item['title'] . '</h4>';
-      if(isset($item['description'])){
+      if(isset($item['description'])) {
         $title .= '<p class="list-group-item-text">' . filter_xss_admin($item['description']) . '</p>';
       }
       $item['localized_options']['attributes']['class'][] = 'list-group-item';
@@ -912,7 +911,7 @@ function bootstrap5_lite_preprocess_user_picture(&$variables) {
 /**
  * Implements hook_preprocess_comment().
  */
-function bootstrap5_lite_preprocess_comment(&$variables){
+function bootstrap5_lite_preprocess_comment(&$variables) {
   if (theme_get_setting('bootstrap5_lite_datetime')) {
     $comment = $variables['elements']['#comment'];
     $variables['timeago'] = t('@time ago', array('@time' => format_interval(time() - $comment->changed)));
@@ -922,7 +921,7 @@ function bootstrap5_lite_preprocess_comment(&$variables){
 /**
  * Implements hook_preprocess_node().
  */
-function bootstrap5_lite_preprocess_node(&$variables){
+function bootstrap5_lite_preprocess_node(&$variables) {
   if (theme_get_setting('bootstrap5_lite_datetime')) {
     $node = $variables['elements']['#node'];
     $variables['timeago'] = t('@time ago', array('@time' => format_interval(time() - $node->created)));

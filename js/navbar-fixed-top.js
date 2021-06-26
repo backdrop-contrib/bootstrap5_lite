@@ -4,7 +4,7 @@
  */
 (function($, Backdrop, window, document, undefined) {
   $(document).ready(function() {
-    if ($("#navbar").length){
+    if ($("#navbar").length) {
       $("#navbar").detach().prependTo('body');
       $("#navbar").removeClass('navbar-fixed-top');
       $("body").removeClass('navbar-is-fixed-top');
