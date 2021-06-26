@@ -132,12 +132,12 @@ function bootstrap5_lite_preprocess_page(&$variables){
 
   backdrop_add_html_head($no_old_ie_compatibility_modes, 'no_old_ie_compatibility_modes');
 
-  if(bootstrap5_lite_is_header('get')){
+  if(bootstrap5_lite_is_header('get')) {
 
     if (function_exists('admin_bar_suppress') && user_access('access administration bar') && !admin_bar_suppress(FALSE)) {
       $variables['classes'][] = 'navbar-admin-bar';
     }
-    if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position'))
+    if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position')) 
     {
       $variables['classes'][] = 'navbar-is-' . $navbar_position;
 
@@ -169,6 +169,7 @@ function bootstrap5_lite_preprocess_header(&$variables){
   if($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position'))
   {
     $variables['navbar_classes_array'][] = 'navbar-' . $navbar_position;
+    $variables['navbar_classes_array'][] = $navbar_position;
   }
 
   $variables['container_class'] = theme_get_setting('bootstrap5_lite_container');
