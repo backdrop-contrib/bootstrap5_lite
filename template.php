@@ -158,15 +158,13 @@ function bootstrap5_lite_preprocess_page(&$variables) {
 function bootstrap5_lite_preprocess_header(&$variables) {
   $variables['navigation'] = '';
 
-  if ($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu'))
-  {
+  if ($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu')) {
     $user_menu = menu_tree('user-menu');
     $variables['navigation'] = render($user_menu);
   }
 
   $variables['navbar_classes_array'] = array('navbar navbar-expand-lg');
-  if ($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position'))
-  {
+  if ($navbar_position = theme_get_setting('bootstrap5_lite_navbar_position')) {
     $variables['navbar_classes_array'][] = 'navbar-' . $navbar_position;
     $variables['navbar_classes_array'][] = $navbar_position;
   }
