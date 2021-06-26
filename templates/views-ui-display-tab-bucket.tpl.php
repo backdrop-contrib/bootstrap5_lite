@@ -12,7 +12,7 @@
     <h3 class="panel-title"><?php print $title; ?></h3>
   <?php endif; ?>
   <?php print $item_help_icon; ?>
-  <?php if(!empty($actions)) : ?>
+  <?php if (!empty($actions)) : ?>
     <?php print $actions; ?>
   <?php endif; ?>
   <?php if (!empty($title) or !empty($actions)) : ?>

@@ -87,7 +87,7 @@
 ?>
 <article id="node-<?php print $node->nid; ?>" class="media <?php print implode(' ', $classes); ?> clearfix"<?php print backdrop_attributes($attributes); ?>>
   <?php if ($display_submitted): ?>  
-    <?php if($user_picture): ?>
+    <?php if ($user_picture): ?>
       <div class="pull-left">
         <?php print $user_picture; ?>
       </div>
