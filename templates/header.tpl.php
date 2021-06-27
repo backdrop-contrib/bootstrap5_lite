@@ -42,7 +42,7 @@
     </div>
     
     <?php if ($navigation or $menu): ?>
-      <div class="navbar-collapse collapse">
+      <div class="navbar-collapse collapse <?php print $navbar_menu_position; ?>">
         <?php if ($menu) print $menu; ?>
         <?php if ($navigation) print $navigation; ?>
       </div>
