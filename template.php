@@ -366,6 +366,26 @@ function bootstrap5_lite_textarea($variables) {
 }
 
 /**
+ * Returns HTML for a checkbox form element.
+ *
+ * @ingroup themeable
+ */
+function bootstrap5_lite_checkbox($variables) {
+  $variables['element']['#attributes']['class'][] = 'form-check-input';
+  return theme_checkbox($variables);
+}
+
+/**
+ * Returns HTML for a radio form element.
+ *
+ * @ingroup themeable
+ */
+function bootstrap5_lite_radio($variables) {
+  $variables['element']['#attributes']['class'][] = 'form-check-input';
+  return theme_radio($variables);
+}
+
+/**
  * Returns HTML for a form element.
  *
  * Each form element is wrapped in a DIV container having the following CSS
