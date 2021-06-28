@@ -36,7 +36,7 @@ html.js fieldset.collapsed{
   height:auto;
 }
 
-fieldset legend.panel-heading{
+fieldset legend.card-header{
   float:left;line-height:1em;margin:0;
 }
 
@@ -44,11 +44,11 @@ fieldset .panel-body{
   clear:both;
 }
 
-fieldset .panel-heading a.panel-title{
+fieldset .card-header a.panel-title{
   color:inherit;display:block;margin:-10px -15px;padding:10px 15px;
 }
 
-fieldset .panel-heading a.panel-title:hover{
+fieldset .card-header a.panel-title:hover{
   text-decoration:none;
 }
 
