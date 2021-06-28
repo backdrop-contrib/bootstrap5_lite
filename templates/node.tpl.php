@@ -88,14 +88,14 @@
 <article id="node-<?php print $node->nid; ?>" class="media <?php print implode(' ', $classes); ?> clearfix"<?php print backdrop_attributes($attributes); ?>>
   <?php if ($display_submitted): ?>  
     <?php if ($user_picture): ?>
-      <div class="pull-left">
+      <div class="float-start">
         <?php print $user_picture; ?>
       </div>
     <?php endif; ?>
   <?php endif; ?>
   <div>
     <?php if ($display_submitted): ?>
-    <span class="text-muted pull-right">
+    <span class="text-muted float-end">
         <small class="text-muted"><?php isset($timeago) ? print $timeago : print $date; ?></small>
     </span>
     <strong><?php print theme('username',array('account' => user_load($uid))); ?></strong>
@@ -114,7 +114,7 @@
         print render($content);
       ?>
     </div>
-    <div class="pull-right">
+    <div class="float-end">
     <?php print render($content['links']); ?>
     </div>
   </div>

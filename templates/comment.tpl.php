@@ -58,12 +58,12 @@
 ?>
 <article class="media <?php if ($new) print "bg-info" ?> <?php print implode(' ', $classes); ?> clearfix"<?php print backdrop_attributes($attributes); ?>>
   <?php if ($user_picture): ?>
-  <div class="pull-left">
+  <div class="float-start">
     <?php print $user_picture; ?>
   </div>
   <?php endif; ?>  
   <div class="media-body">
-    <span class="text-muted pull-right">
+    <span class="text-muted float-end">
         <small class="text-muted"><?php isset($timeago) ? print $timeago : print $changed; ?></small>
     </span>
     <strong class="text-success"><?php print $author; ?></strong>
@@ -79,7 +79,7 @@
       </div>
       <?php endif; ?>
     </div>
-    <div class="pull-right">
+    <div class="float-end">
     <?php print render($content['links']) ?>
     </div>
   </div>
