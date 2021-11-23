@@ -150,6 +150,29 @@ function bootstrap5_lite_preprocess_page(&$variables) {
       }
     }
   }
+
+  // Add 'not-front' if we're not front.
+  if (!$variables['is_front']) {
+    $variables['classes'][] = 'not-front';
+  }
+
+  // Add classes based on normal path parts.
+  $normal_path = strtolower(backdrop_get_normal_path(request_path()));
+  $normal_path = str_replace('_', '-', $normal_path);
+  $path_parts = $normal_path ? explode('/', $normal_path) : array();
+  if (!empty($path_parts)) {
+    $path_classes = array('page-' . $path_parts[0]);
+    for ($i = 1; $i < count($path_parts); $i++) {
+      $path_classes[] = $path_classes[$i - 1] . '-' . $path_parts[$i];
+    }
+    $variables['classes'] = array_merge($variables['classes'], $path_classes);
+  }
+
+  // Add classes based on user roles.
+  global $user;
+  foreach ($user->roles as $role) {
+    $variables['classes'][] = 'role-' . $role;
+  }
 }
 
 /**
@@ -201,7 +224,7 @@ function bootstrap5_lite_links__header_menu($menu) {
   foreach ($menu['links'] as $item => $link) {
     $menu['links'][$item]['attributes']['class'][] = 'nav-link';
   }
-    
+
   return theme_links($menu);
 }
 
@@ -217,7 +240,7 @@ function bootstrap5_lite_links__user_menu($menu) {
     $menu['links'][$item]['attributes']['class'][] = 'dropdown-item';
   }
   $menu['attributes']['class'][] = 'dropdown-menu';
-    
+
   return theme_links($menu);
 }
 
@@ -700,7 +723,7 @@ function bootstrap5_lite_menu_local_tasks(&$variables) {
     foreach ($variables['primary'] as $key => $item) {
       $variables['primary'][$key]['#link']['localized_options']['attributes']['class'][] = 'nav-link';
     }
-      
+
     $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
     $variables['primary']['#prefix'] .= '<ul class="nav nav-tabs tabs-primary">';
     $variables['primary']['#suffix'] = '</ul>';
