@@ -265,7 +265,7 @@ function bootstrap5_lite_fieldset($variables) {
     // Always wrap fieldset legends in a SPAN for CSS positioning.
     $output .= '<legend class="card-header"><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
   }
-  $output .= '<div class="fieldset-wrapper card-body">';
+  $output .= '<div class="fieldset-wrapper card-body container"><div class="row">';
   if (!empty($element['#description'])) {
     $output .= '<div class="fieldset-description">' . $element['#description'] . '</div>';
   }
@@ -273,7 +273,7 @@ function bootstrap5_lite_fieldset($variables) {
   if (isset($element['#value'])) {
     $output .= $element['#value'];
   }
-  $output .= '</div>';
+  $output .= '</div></div>';
   $output .= "</fieldset>\n";
   return $output;
 }
