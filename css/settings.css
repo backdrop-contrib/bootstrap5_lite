@@ -56,3 +56,13 @@ div.form-item.form-type-radio.form-item-bootstrap5-lite-bootswatch {
     width: 30%;
   }
 }
+
+/* Make display of swatches more compact */
+
+@media (min-width: 732px) {
+  #edit-bootstrap5-lite-bootswatch  {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+  }
+}
