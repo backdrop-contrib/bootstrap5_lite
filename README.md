@@ -8,11 +8,9 @@ This theme is still in beta and is subject to changes that may break your theme 
 Features
 --------
 
-1. Load Bootstrap from [BootstrapCDN](http://bootstrapcdn.com/) or from the bundled library.
-2. [Bootswatch](http://bootswatch.com) support included. Easy to pick a Bootswatch free theme.
-3. [Bootstrap icons](https://icons.getbootstrap.com) support included.
-3. [FontAwesome 4](https://fontawesome.com/v4.7/) and [FontAwesome 5](https://fontawesome.com) support included.
-4. Other tweaks:
+1. [Bootswatch](http://bootswatch.com) support included. Easy to pick a Bootswatch free theme.
+2. Load Bootstrap/Bootswatch, Bootstrap icons, and FontAwesome from [BootstrapCDN](http://bootstrapcdn.com/) or from bundled libraries.
+3. Other tweaks:
   - Navbar settings (fixed, static, top, bottom).
   - Navbar user menu with cog icon.
   - Breadcrumbs tweaks.
@@ -22,23 +20,31 @@ Features
 Installation
 ------------
 
-  - Install this theme using the official [Backdrop CMS instructions](https://backdropcms.org/guide/themes).
 
-  - The navbar content is controlled by a layout block - "Header block". By changing settings for the "Header block", you can control the visibility of the menu, logo, sitename and site slogan.
+Install this theme using the official [Backdrop CMS instructions](https://backdropcms.org/guide/themes).
+
+The navbar content is controlled by a layout block - "Header block". By changing settings for the "Header block", you can control the visibility of the menu, logo, sitename and site slogan.
 
 Documentation
 -------------
 
 See the official [Bootstrap 5 documentation](https://getbootstrap.com/docs/5.1/getting-started/introduction/) for a general description of Bootstrap CSS, components, and JS resources supported by the module.
 
-See the official [Font Awesome 4 documentation](https://fontawesome.com/v4.7/) for a general description of Font Awesome 4. See the official [Font Awesome 5 documentation](https://fontawesome.com/v4.7/) for a general description of Font Awesome 5. Support is provided via "shims" on the settings page to use FontAwesome 5 (which is the bundled version) with FontAwesome 4 syntax, icons, and aliases for backward compatibility.
+Differences from Bootstrap 3
+----------------------------
 
-Note that Bootstrap 5 has different icons than Bootstrap 3 did. In Bootstrap 3, icons are provided from the Glyphicon Halflings font, while Bootstrap 5 comes with its own set of SVG icons, which use different HTML to render. Example:
+This theme uses the Bootstrap 5 library (versus the [Bootstrap Lite](https://backdropcms.org/project/bootstrap_lite) theme that uses Bootstrap 3).
+
+Note that Bootstrap 5 has different icons than Bootstrap 3 did. In Bootstrap 3, icons are provided from the Glyphicon Halflings font, while Bootstrap 5 is intended to use [Bootstrap Icons](https://icons.getbootstrap.com), which is a set of SVG icons in a separate library and uses different HTML to render. You can use Boostrap Icons in your site by installing the [Bootstrap Icons](https://backdropcms.org/project/bootstrap_icons) contrib module. 
+
+Examples:
 
 * Bootstrap 3 cart icon: `<i class="glyphicon glyphicon-shopping-cart"></i>`
 * Bootstrap 5 cart icon: `<i class="bi bi-cart"></i>`
 
-You can also use Font Awesome 4 and 5 icons. If you enable a Font Awesome library, this would also be a cart icon:
+You can also use Font Awesome 4 and/or 5 icons, which are provided by the [FontAwesome](https://backdropcms.org/project/fontawesome) contrib module. 
+
+If you enable a Font Awesome library, this would also provide a cart icon:
 
 * Font Awesome 4 & 5 cart icon: `<i class="fa fa-shopping-cart"></i>`
 
@@ -46,8 +52,6 @@ Some icons differ between Font Awesome 4 and 5. For example:
 
 * Font Awesome 4 bandcamp icon: `<i class="fa fa-bandcamp"></i>`
 * Font Awesome 5 bandcamp icon: `<i class="fab fa-bandcamp"></i>`
-
-If you have content that uses Font Awesome 4 icons, but wish to use a Font Awesome 5 library, select the "Add Font Awesome v4 shims" option in the theme settings.
 
 Differences from Drupal 7
 -------------------------
@@ -69,6 +73,7 @@ Current Maintainers
 -------------------
 
 - [Andy Shillingford](https://github.com/docwilmot)
+- [ Robert J. Lang](https://github.com/bugfolder)
 
 Credits
 -------
@@ -85,4 +90,4 @@ License
 This project is GPL v2 software. See the LICENSE.txt file in this directory for complete text.
 
 
-Bootstrap, the Bootswatch themes, and Font Awesome are provided under the [MIT License](https://getbootstrap.com/docs/5.0/about/license/).
+Bootstrap, the Bootswatch themes, Bootstrap icons, and Font Awesome are provided under the [MIT License](https://getbootstrap.com/docs/5.0/about/license/).

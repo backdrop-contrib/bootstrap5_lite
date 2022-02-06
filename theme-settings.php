@@ -48,47 +48,6 @@ function bootstrap5_lite_form_system_theme_settings_alter(&$form, &$form_state, 
     '#empty_value' => NULL,
   );
 
-  $form['bootstrap5_lite_cdn']['bootstrap5_lite_bootstrap_icons'] = array(
-    '#type' => 'select',
-    '#title' => t('Bootstrap icons version'),
-    '#options' => array(
-      '1.7.2' => t('1.7.2 (CDN)'),
-      'module' => t('1.7.2 (bundled)'),
-    ),
-    '#default_value' => theme_get_setting('bootstrap5_lite_bootstrap_icons', $theme_name),
-    '#empty_option' => t('Disabled'),
-    '#empty_value' => NULL,
-  );
-
-  $form['bootstrap5_lite_cdn']['bootstrap5_lite_font_awesome'] = array(
-    '#type' => 'select',
-    '#title' => t('Font Awesome version'),
-    '#options' => array(
-      '4.4.0' => t('4.4.0 (CDN)'),
-      '4.7.0' => t('4.7.0 (CDN)'),
-      '5.15.4' => t('5.15.4 (CDN)'),
-      'module' => t('5.15.4 (bundled)'),
-    ),
-    '#default_value' => theme_get_setting('bootstrap5_lite_font_awesome', $theme_name),
-    '#empty_option' => t('Disabled'),
-    '#empty_value' => NULL,
-  );
-
-  $form['bootstrap5_lite_cdn']['bootstrap5_lite_font_awesome_v4_shims'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Add Font Awesome v4 shims'),
-    '#description' => t('Add shims that support Font Awesome version 4 icon names, aliases, and syntax with Font Awesome version 5.'),
-    '#default_value' => theme_get_setting('bootstrap5_lite_font_awesome_v4_shims', $theme_name),
-    '#states' => array(
-      'visible' => array(
-        array('select[name="bootstrap5_lite_font_awesome"]' => array('value' => '5.15.4')),
-        array('select[name="bootstrap5_lite_font_awesome"]' => array('value' => 'module')),
-      ),
-    ),
-  );
-
-
-
   // Bootswatch
 
   $bootswatch_themes = array();
