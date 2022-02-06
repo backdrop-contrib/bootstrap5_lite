@@ -4,9 +4,10 @@ backdrop = 1.x
 type = theme
 
 settings[bootstrap5_lite_cdn] = 5.0.1
-settings[bootstrap5_lite_font_awesome] = 4.4.0
 settings[bootstrap5_lite_container] = container
 settings[bootstrap5_lite_navbar_position] = static-top
 settings[bootstrap5_lite_navbar_menu_position] = navbar-left
+
+tags[] = Bootstrap
 
 stylesheets[all][] = css/style.css
