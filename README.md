@@ -90,4 +90,4 @@ License
 This project is GPL v2 software. See the LICENSE.txt file in this directory for complete text.
 
 
-Bootstrap, the Bootswatch themes, Bootstrap icons, and Font Awesome are provided under the [MIT License](https://getbootstrap.com/docs/5.0/about/license/).
+Bootstrap and the Bootswatch themes are provided under the [MIT License](https://getbootstrap.com/docs/5.0/about/license/).
