@@ -281,8 +281,8 @@ function bootstrap5_lite_fieldset($variables) {
   $element = $variables['element'];
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
-  $element['#attributes']['class'][] = 'card';
-  $element['#attributes']['class'][] = 'card-default';
+  // $element['#attributes']['class'][] = 'card';
+  // $element['#attributes']['class'][] = 'card-default';
   $output = '<fieldset' . backdrop_attributes($element['#attributes']) . '>';
   if (!empty($element['#title'])) {
     // Always wrap fieldset legends in a SPAN for CSS positioning.
