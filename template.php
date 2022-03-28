@@ -274,11 +274,12 @@ function bootstrap5_lite_menu_tree__user_menu($variables) {
  * @ingroup themeable
  */
 function bootstrap5_lite_fieldset($variables) {
-  //dpm($variables);
-  if (isset($variables['element']['#group_fieldset']) && !empty($variables['element']['#group_fieldset']) || !empty($variables['element']['#groups']['vertical_tabs'])) {
+  $element = $variables['element'];
+  // Check is the fieldset is in a vertical tab. Field group's vtabs are a bit
+  // different so we need to check the field group class to know.
+  if (isset($element['#group_fieldset']) && !empty($element['#group_fieldset']) || !empty($element['#groups']['vertical_tabs']) || (isset($element['#attributes']['class']) && in_array('field-group-tab', $element['#attributes']['class']))) {
     return theme_fieldset($variables);
   }
-  $element = $variables['element'];
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
   $element['#attributes']['class'][] = 'card';
