@@ -263,6 +263,15 @@ function bootstrap5_lite_menu_tree__user_menu($variables) {
 }
 
 /**
+ * Implements hook_field_group_pre_render().
+ */
+function bootstrap5_lite_field_group_pre_render_alter(&$element, $group, &$form) {
+  if ($group->format_type == 'tab') {
+    $element['#group_fieldset'] = TRUE;
+  }
+}
+
+/**
  * Returns HTML for a fieldset form element and its children.
  *
  * @param $variables
@@ -277,7 +286,7 @@ function bootstrap5_lite_fieldset($variables) {
   $element = $variables['element'];
   // Check is the fieldset is in a vertical tab. Field group's vtabs are a bit
   // different so we need to check the field group class to know.
-  if (isset($element['#group_fieldset']) && !empty($element['#group_fieldset']) || !empty($element['#groups']['vertical_tabs']) || (isset($element['#attributes']['class']) && in_array('field-group-tab', $element['#attributes']['class']))) {
+  if (isset($element['#group_fieldset']) && !empty($element['#group_fieldset']) || !empty($element['#groups']['vertical_tabs'])) {
     return theme_fieldset($variables);
   }
   element_set_attributes($element, array('id'));
