@@ -60,7 +60,7 @@ function bootstrap5_lite_css_alter(&$css) {
     }
 
     // Add overrides to Bootstrap CSS.
-    $override = '/' . $theme_path . '/css/overrides.css';
+    $override = $theme_path . '/css/overrides.css';
     $css[$override] = array(
       'data' => $override,
       'type' => 'file',
