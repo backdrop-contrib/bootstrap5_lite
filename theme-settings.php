@@ -41,6 +41,7 @@ function bootstrap5_lite_form_system_theme_settings_alter(&$form, &$form_state, 
     '#options' => array(
       '5.0.1' => t('5.0.1 (CDN)'),
       '5.1.3' => t('5.1.3 (CDN)'),
+      '5.3.1' => t('5.3.1 (CDN)'),
       'module' => t('5.1.3 (bundled)'),
     ),
     '#default_value' => theme_get_setting('bootstrap5_lite_cdn', $theme_name),
