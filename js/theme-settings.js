@@ -10,6 +10,15 @@
     attach: function (context) {
       var $context = $(context);
 
+      // Version and CDN
+
+      $context.find('#edit-bootstrap5-lite-cdn').backdropSetSummary(function () {
+        var summary = [];
+        var bootstrap_version = 'Bootstrap: ' + $context.find('select[name="bootstrap5_lite_cdn"] :selected').text();
+        summary.push(bootstrap_version);
+        return summary.join('<br>');
+      });
+
       // Bootswatch theme
 
       $context.find('#edit-bootswatch').backdropSetSummary(function () {
@@ -62,17 +71,6 @@
         if ($context.find(':input[name="bootstrap5_lite_image_responsive"]').is(':checked')) {
           summary.push(Backdrop.t('Responsive images'));
         }
-        return summary.join('<br>');
-      });
-
-      // Version and CDN
-
-      $context.find('#edit-bootstrap5-lite-cdn').backdropSetSummary(function () {
-        var summary = [];
-        var bootstrap_version = 'Bootstrap: ' + $context.find('select[name="bootstrap5_lite_cdn"] :selected').text();
-        summary.push(bootstrap_version);
-        var fontawesome_version = 'FontAwesome: ' + $context.find('select[name="bootstrap5_lite_font_awesome"] :selected').text();
-        summary.push(fontawesome_version);
         return summary.join('<br>');
       });
 
