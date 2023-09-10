@@ -14,6 +14,9 @@ function bootstrap5_lite_form_system_theme_settings_alter(&$form, &$form_state, 
   $theme_name = $form['theme']['#value'];
   $form['bootstrap'] = array(
     '#type' => 'vertical_tabs',
+    '#attached' => array(
+      'js'  => array(backdrop_get_path('theme', 'bootstrap5_lite') . '/js/theme-settings.js'),
+    ),
     '#prefix' => '<h2><small>' . t('Bootstrap Settings') . '</small></h2>',
     '#weight' => -10,
   );
