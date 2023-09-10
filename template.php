@@ -10,27 +10,56 @@
 function bootstrap5_lite_css_alter(&$css) {
   $theme_path = backdrop_get_path('theme', 'bootstrap5_lite');
 
-  if ($bootstrap_cdn = theme_get_setting('bootstrap5_lite_cdn')) {
-    // Add CDN.
-    if ($bootswatch = theme_get_setting('bootstrap5_lite_bootswatch')) {
-      $cdn = 'https://cdn.jsdelivr.net/npm/bootswatch@' . $bootstrap_cdn  . '/dist/' . $bootswatch . '/bootstrap.min.css';
+  // Bootstrap
+
+  $cdn_version = theme_get_setting('bootstrap5_lite_cdn');
+  if ($cdn_version) {
+
+    $bootswatch = theme_get_setting('bootstrap5_lite_bootswatch');
+    if ($cdn_version == 'module') {
+      // Use bundled library
+      $bootstrap_src = '/' . $theme_path;
+      if ($bootswatch) {
+        $bootstrap_src .= '/bootswatch/' . $bootswatch . '/bootstrap.min.css';
+      }
+      else {
+        $bootstrap_src .= '/bootstrap/css/bootstrap.min.css';
+      }
+      $css[$bootstrap_src] = array(
+        'data' => $bootstrap_src,
+        'type' => 'file',
+        'every_page' => TRUE,
+        'every_page_weight' => -1,
+        'media' => 'all',
+        'preprocess' => FALSE,
+        'group' => CSS_THEME,
+        'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+        'weight' => -2,
+      );
     }
     else {
-      $cdn = 'https://cdn.jsdelivr.net/npm/bootstrap@' . $bootstrap_cdn  . '/dist/css/bootstrap.min.css';
+      // Use CDN
+      $bootstrap_src = 'https://cdn.jsdelivr.net/npm/';
+      if ($bootswatch) {
+        $bootstrap_src .= 'bootswatch@' . $cdn_version . '/dist/' . $bootswatch . '/bootstrap.min.css';
+      }
+      else {
+        $bootstrap_src .= 'bootstrap@' . $cdn_version . '/dist/css/bootstrap.min.css';
+      }
+      $css[$bootstrap_src] = array(
+        'data' => $bootstrap_src,
+        'type' => 'external',
+        'every_page' => TRUE,
+        'every_page_weight' => -1,
+        'media' => 'all',
+        'preprocess' => FALSE,
+        'group' => CSS_THEME,
+        'browsers' => array('IE' => TRUE, '!IE' => TRUE),
+        'weight' => -2,
+      );
     }
-    $css[$cdn] = array(
-      'data' => $cdn,
-      'type' => 'external',
-      'every_page' => TRUE,
-      'every_page_weight' => -1,
-      'media' => 'all',
-      'preprocess' => FALSE,
-      'group' => CSS_THEME,
-      'browsers' => array('IE' => TRUE, '!IE' => TRUE),
-      'weight' => -2,
-      'attributes' => array(),
-    );
-    // Add overrides.
+
+    // Add overrides to Bootstrap CSS.
     $override = $theme_path . '/css/overrides.css';
     $css[$override] = array(
       'data' => $override,
@@ -44,37 +73,40 @@ function bootstrap5_lite_css_alter(&$css) {
       'weight' => -1,
     );
   }
-  if ($font_awesome = theme_get_setting('bootstrap5_lite_font_awesome')) {
-    $awesome = 'https://stackpath.bootstrapcdn.com/font-awesome/' . $font_awesome . '/css/font-awesome.min.css';
-    $css[$awesome] = array(
-      'data' => $awesome,
-      'type' => 'external',
-      'every_page' => TRUE,
-      'every_page_weight' => -1,
-      'media' => 'all',
-      'preprocess' => FALSE,
-      'group' => CSS_THEME,
-      'browsers' => array('IE' => TRUE, '!IE' => TRUE),
-      'weight' => -2,
-      'attributes' => array(),
-    );
-  }
-
 }
 
 /**
  * Implements hook_js_alter().
  */
 function bootstrap5_lite_js_alter(&$js) {
-  if (theme_get_setting('bootstrap5_lite_cdn')) {
-    $cdn = 'https://cdn.jsdelivr.net/npm/bootstrap@' . theme_get_setting('bootstrap5_lite_cdn')  . '/dist/js/bootstrap.min.js';
-    $js[$cdn] = backdrop_js_defaults();
-    $js[$cdn]['data'] = $cdn;
-    $js[$cdn]['type'] = 'external';
-    $js[$cdn]['every_page'] = TRUE;
-    $js[$cdn]['every_page_weight'] = -1;
-    $js[$cdn]['weight'] = -100;
-    //$js[$cdn]['group'] = JS_SETTING;
+  $theme_path = backdrop_get_path('theme', 'bootstrap5_lite');
+
+  // Boostrap
+
+  $cdn_version = theme_get_setting('bootstrap5_lite_cdn');
+  if ($cdn_version) {
+    if ($cdn_version == 'module') {
+      // Use bundled library
+      $js_src = '/' . $theme_path . '/bootstrap/js/bootstrap.min.js';
+      $js[$js_src] = array(
+        'data' => $js_src,
+        'type' => 'file',
+        'every_page' => TRUE,
+        'every_page_weight' => -1,
+        'weight' => -100,
+      ) + backdrop_js_defaults();
+    }
+    else {
+      // Use CDN
+      $js_src = 'https://cdn.jsdelivr.net/npm/bootstrap@' . $cdn_version . '/dist/js/bootstrap.min.js';
+      $js[$js_src] = array(
+        'data' => $js_src,
+        'type' => 'external',
+        'every_page' => TRUE,
+        'every_page_weight' => -1,
+        'weight' => -100,
+      ) + backdrop_js_defaults();
+    }
   }
 }
 
