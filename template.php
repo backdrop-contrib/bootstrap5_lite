@@ -1034,9 +1034,12 @@ function bootstrap5_lite_preprocess_node(&$variables) {
   }
 }
 
+/**
+ * Overrides theme_progress_bar().
+ */
 function bootstrap5_lite_progress_bar($variables) {
   $output = '<div id="progress">';
-  $output = '<div class="progress">';
+  $output .= '<div class="progress">';
   $output .= '  <div class="progress-bar" role="progressbar" style="width: ' . $variables['percent'] . '%" aria-valuenow="' . $variables['percent'] . '" aria-valuemin="0" aria-valuemax="100"></div>';
   $output .= '</div>';
   $output .= '<div class="d-flex justify-content-between">';
