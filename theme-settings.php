@@ -144,6 +144,11 @@ function bootstrap5_lite_form_system_theme_settings_alter(&$form, &$form_state, 
     '#description' => t('Select if you want cog style right pulled popup menu.'),
     '#default_value' => theme_get_setting('bootstrap5_lite_navbar_user_menu', $theme_name),
   );
+  if (!module_exists('font_awesome')) {
+    $form['navbar']['bootstrap5_lite_navbar_user_menu']['#default_value'] = FALSE;
+    $form['navbar']['bootstrap5_lite_navbar_user_menu']['#disabled'] = TRUE;
+    $form['navbar']['bootstrap5_lite_navbar_user_menu']['#description'] .= ' ' . t('Please install the <a href="!url">FontAwesome module</a> to enable this option.', array('!url' => url('https://backdropcms.org/project/font_awesome')));
+  }
 
   // Breadcrumbs
 
