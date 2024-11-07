@@ -353,8 +353,6 @@ span.password-toggle-wrapper {
   color: #888888;
 }
 
-<<<<<<< HEAD
-
 /**
  * @file
  * Card listing view on the default home page.
@@ -385,7 +383,7 @@ span.password-toggle-wrapper {
   background-color: transparent;
 
 }
-=======
+
 /* Overrides dropbutton a colors for all Bootswatch themes */
 body.cerulean .dropbutton .dropbutton-action a { color: #2fa4e7; }
 body.cerulean .dropbutton .dropbutton-action a:hover { color: #1f7fb8; }
@@ -446,4 +444,3 @@ body.united .dropbutton .dropbutton-action a:hover { color: #c8461c; }
 
 body.yeti .dropbutton .dropbutton-action a { color: #008cba; }
 body.yeti .dropbutton .dropbutton-action a:hover { color: #0079a5; }
->>>>>>> patch_36
