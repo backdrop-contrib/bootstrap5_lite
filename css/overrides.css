@@ -378,10 +378,10 @@ span.password-toggle-wrapper {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
+}
 
 .messages .placeholder {
   background-color: transparent;
-
 }
 
 /* Overrides dropbutton a colors for all Bootswatch themes */
