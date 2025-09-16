@@ -21,28 +21,22 @@
 ?>
 <header id="navbar" role="banner" class="<?php print implode(" ",$navbar_classes_array); ?>">
   <div class="<?php print $container_class;?>">
-    <div class="navbar-header">
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <?php if ($site_name || $logo): ?>
-        <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <?php if ($logo): ?>
-            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-          <?php endif; ?>
-          <?php if ($site_name): ?>
-            <?php print $site_name; ?>
-          <?php endif; ?>
-        </a>
-      <?php endif; ?>
-    </div>
-    
+    <?php if ($site_name || $logo): ?>
+      <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+        <?php if ($logo): ?>
+          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        <?php endif; ?>
+        <?php if ($site_name): ?>
+          <?php print $site_name; ?>
+        <?php endif; ?>
+      </a>
+    <?php endif; ?>
+    <button type="button" class="navbar-toggler <?php print ($navbar_menu_position == 'navbar-right') ? 'ms-auto' : ''; ?>" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
     <?php if ($navigation or $menu): ?>
-      <div class="navbar-collapse collapse <?php print $navbar_menu_position; ?>">
+      <div class="navbar-collapse collapse" id="navbar-content">
         <?php if ($menu) print $menu; ?>
         <?php if ($navigation) print $navigation; ?>
       </div>
