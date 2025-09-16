@@ -224,12 +224,7 @@ function bootstrap5_lite_preprocess_page(&$variables) {
 function bootstrap5_lite_preprocess_header(&$variables) {
   $variables['navigation'] = '';
   $navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position');
-  if ($navbar_menu_position == 'navbar-right') {
-    $variables['navbar_menu_position'] = 'd-flex justify-content-end';
-  }
-  else {
-    $variables['navbar_menu_position'] = 'd-flex justify-content-between';
-  }
+  $variables['navbar_menu_position'] = $navbar_menu_position;
 
   if ($navbar_position = theme_get_setting('bootstrap5_lite_navbar_user_menu')) {
     $user_menu = menu_tree('user-menu');
@@ -263,6 +258,9 @@ function bootstrap5_lite_links__header_menu($menu) {
   $menu['attributes']['class'] = array('menu','nav','navbar-nav');
   if ($navbar_menu_position = theme_get_setting('bootstrap5_lite_navbar_menu_position')) {
     $menu['attributes']['class'][] = $navbar_menu_position;
+    if ($navbar_menu_position == 'navbar-right') {
+      $menu['attributes']['class'][] = 'ms-auto';
+    }
   }
   foreach ($menu['links'] as $item => $link) {
     $menu['links'][$item]['attributes']['class'][] = 'nav-link';
@@ -295,7 +293,7 @@ function bootstrap5_lite_menu_tree__user_menu($variables) {
     $menu = menu_navigation_links('user-menu');
     $links = $menu ? theme('links__user_menu', array('links' => $menu)) : NULL;
     return '
-<div class="menu nav navbar-nav dropstart p-2">
+<div class="menu nav navbar-nav dropstart p-2 ms-auto">
   <div class="dropdown">
     <div data-toggle="dropdown" data-bs-toggle="dropdown"><i class="fa fa-cog"></i></div>
     ' . $links . '
