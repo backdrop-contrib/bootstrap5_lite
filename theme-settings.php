@@ -39,18 +39,39 @@ function bootstrap5_lite_form_system_theme_settings_alter(&$form, &$form_state, 
     '#collapsed' => TRUE,
   );
 
+  // for backwards compatibility
+  switch (theme_get_setting('bootstrap5_lite_cdn', $theme_name)) {
+    case '5.0.1':
+      $default_value = '5.0';
+      break;
+    case '5.1.3':
+      $default_value = '5.1';
+      break;
+    case '5.3.1':
+      $default_value = '5.3';
+      break;
+    case '5.3.2':
+      $default_value = '5.3';
+      break;
+    case '5.3.3':
+      $default_value = '5.3';
+      break;
+
+    default:
+      $default_value = theme_get_setting('bootstrap5_lite_cdn', $theme_name);
+  }
+
   $form['bootstrap5_lite_cdn']['bootstrap5_lite_cdn'] = array(
     '#type' => 'select',
     '#title' => t('Bootstrap version'),
     '#options' => array(
-      '5.0.1' => t('5.0.1 (CDN)'),
-      '5.1.3' => t('5.1.3 (CDN)'),
-      '5.3.1' => t('5.3.1 (CDN)'),
-      '5.3.2' => t('5.3.2 (CDN)'),
-      '5.3.3' => t('5.3.3 (CDN)'),
-      'module' => t('5.3.3 (bundled)'),
+      '5.0' => t('5.0.x (CDN)'),
+      '5.1' => t('5.1.x (CDN)'),
+      '5.2' => t('5.2.x (CDN)'),
+      '5.3' => t('5.3.x (CDN)'),
+      'module' => t('5.3.8 (bundled)'),
     ),
-    '#default_value' => theme_get_setting('bootstrap5_lite_cdn', $theme_name),
+    '#default_value' => $default_value,
     '#empty_option' => t('Disabled'),
     '#empty_value' => NULL,
   );
@@ -79,7 +100,7 @@ function bootstrap5_lite_form_system_theme_settings_alter(&$form, &$form_state, 
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#group' => 'bootstrap',
-    '#description' => t('You can use the default Bootstrap theme or a Bootswatch theme, which you can choose here. If you selected a CDN version of Bootstrap, the Bootswatch theme will be served up from the !bootstrapcdn; otherwise it will use the bundled version.', array(
+    '#description' => t('You can use the default Bootstrap theme or a Bootswatch theme, which you can choose here. If you selected a CDN version of Bootstrap, the Bootswatch theme will be served up from the !bootstrapcdn (some of these themes cannot be found in some old CDN versions); otherwise it will use the bundled version.', array(
       '!bootstrapcdn' => l(t('BootstrapCDN'), 'http://bootstrapcdn.com', array(
         'external' => TRUE,
       )),
