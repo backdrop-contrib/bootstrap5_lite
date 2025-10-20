@@ -87,13 +87,11 @@ function bootstrap5_lite_js_alter(&$js) {
   if ($cdn_version) {
     if ($cdn_version == 'module') {
       // Use bundled library
-      $js_src = '/' . $theme_path . '/bootstrap/js/bootstrap.min.js';
+      $js_src = $theme_path . '/bootstrap/js/bootstrap.min.js';
       $js[$js_src] = array(
         'data' => $js_src,
         'type' => 'file',
         'every_page' => TRUE,
-        'every_page_weight' => -1,
-        'weight' => -100,
       ) + backdrop_js_defaults();
     }
     else {
@@ -103,8 +101,6 @@ function bootstrap5_lite_js_alter(&$js) {
         'data' => $js_src,
         'type' => 'external',
         'every_page' => TRUE,
-        'every_page_weight' => -1,
-        'weight' => -100,
       ) + backdrop_js_defaults();
     }
   }
