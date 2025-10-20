@@ -27,6 +27,14 @@ body.navbar-admin-bar.navbar-is-fixed-top .navbar-fixed-top  {
   padding-right: 10px;
 }
 
+.navbar-brand {
+  margin-right: auto;
+}
+
+.navbar-collapse {
+  padding-left: 1rem;
+}
+
 ul li.collapsed,ul li.expanded,ul li.leaf{
   list-style:none;list-style-image:none;
 }
