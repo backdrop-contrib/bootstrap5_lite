@@ -353,6 +353,26 @@ span.password-toggle-wrapper {
   margin-bottom: 0;
 }
 
+/* Fixes for dropdown menues */
+.js .menu-dropdown a, .js .menu-dropdown a:hover {
+  padding-right: 24px;
+}
+
+@media (min-width: 48em) {
+    .menu-dropdown ul {
+    background-color: white;
+    border-radius: 5px;
+    transform: translate3d(0px, 0.5rem, 0px);
+    }
+    .menu-dropdown li,
+    .menu-dropdown li.leaf,
+    .menu-dropdown li.expanded,
+    .menu-dropdown li.collapsed {
+      padding-bottom: 0.5rem;
+    }
+
+}
+
 /* Overrides for specific Bootswatch themes */
 
 /* Cyborg */
