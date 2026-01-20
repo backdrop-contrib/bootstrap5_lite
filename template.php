@@ -927,8 +927,8 @@ function bootstrap5_lite_form_alter(array &$form, array &$form_state = array(), 
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn-default';
     }
     if (isset($form['actions']['cancel_form']) && $form['actions']['cancel_form']['#type'] == 'link') {
-       $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn';
-       $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn-default';
+       $form['actions']['cancel_form']['#options']['attributes']['class'][] = 'btn';
+       $form['actions']['cancel_form']['#options']['attributes']['class'][] = 'btn-default';
     }
 
   }
