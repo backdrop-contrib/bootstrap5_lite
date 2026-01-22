@@ -472,70 +472,29 @@ function bootstrap5_lite_radio($variables) {
 }
 
 /**
- * Returns HTML for a form element.
- *
- * Each form element is wrapped in a DIV container having the following CSS
- * classes:
- * - form-item: Generic for all form elements.
- * - form-type-#type: The internal element #type.
- * - form-item-#name: The internal form element #name (usually derived from the
- *   $form structure and set via form_builder()).
- * - form-disabled: Only set if the form element is #disabled.
- *
- * In addition to the element itself, the DIV contains a label for the element
- * based on the optional #title_display property, and an optional #description.
- *
- * The optional #title_display property can have these values:
- * - before: The label is output before the element. This is the default.
- *   The label includes the #title and the required marker, if #required.
- * - after: The label is output after the element. For example, this is used
- *   for radio and checkbox #type elements as set in system_element_info().
- *   If the #title is empty but the field is #required, the label will
- *   contain only the required marker.
- * - invisible: Labels are critical for screen readers to enable them to
- *   properly navigate through forms but can be visually distracting. This
- *   property hides the label for everyone except screen readers.
- * - attribute: Set the title attribute on the element to create a tooltip
- *   but output no label element. This is supported only for checkboxes
- *   and radios in form_pre_render_conditional_form_element(). It is used
- *   where a visual label is not needed, such as a table of checkboxes where
- *   the row and column provide the context. The tooltip will include the
- *   title and required marker.
- *
- * If the #title property is not set, then the label and any required marker
- * will not be output, regardless of the #title_display or #required values.
- * This can be useful in cases such as the password_confirm element, which
- * creates children elements that have their own labels and required markers,
- * but the parent element should have neither. Use this carefully because a
- * field without an associated label can cause accessibility challenges.
- *
- * @param $variables
- *   An associative array containing:
- *   - element: An associative array containing the properties of the element.
- *     Properties used: #title, #title_display, #description, #id, #required,
- *     #children, #type, #name.
+ * Returns HTML for a form element's help text (#description).
  *
  * @ingroup themeable
  */
-function bootstrap5_lite_form_element($variables) {
-  if (isset($variables['element']['#type'])) {
-    if ($variables['element']['#type'] == 'checkbox') {
-      $variables['element']['#wrapper_attributes']['class'][] = 'checkbox';
-    }
-    if ($variables['element']['#type'] == 'radio') {
-      $variables['element']['#wrapper_attributes']['class'][] = 'radio';
-    }
+function bootstrap5_lite_form_element_description(array $variables) {
+  $element = $variables['element'];
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // If description is not set, output nothing.
+  if (!isset($element['#description'])) {
+    return '';
   }
-  $description = FALSE;
-  if (isset($variables['element']['#description'])) {
-    $description = $variables['element']['#description'];
-    unset($variables['element']['#description']);
+
+  $attributes = array('class' => array(
+    'description',
+    'help-block',
+  ));
+  if (isset($element['#description_display']) && $element['#description_display'] === 'invisible') {
+    $attributes['class'][] = 'element-invisible';
   }
-  $output = theme_form_element($variables);
-  if ($description) {
-    $output .= '<div class="description help-block">' . $description . "</div>\n";
-  }
-  return $output;
+
+  return '<div' . backdrop_attributes($attributes) . '>' . $element['#description'] . "</div>\n";
 }
 
 /**
@@ -930,7 +889,31 @@ function bootstrap5_lite_form_alter(array &$form, array &$form_state = array(), 
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn';
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn-default';
     }
+  }
 
+  // Add wrapper attributes to checkbox and radio elements
+  _bootstrap5_lite_add_wrapper_attributes($form);
+}
+
+/**
+ * Helper function to add wrapper attributes to checkbox and radio elements.
+ */
+function _bootstrap5_lite_add_wrapper_attributes(&$elements) {
+  foreach (element_children($elements) as $key) {
+    if (isset($elements[$key]) && is_array($elements[$key])) {
+      // Add wrapper attributes for checkbox and radio elements
+      if (isset($elements[$key]['#type']) && ($elements[$key]['#type'] == 'checkbox')) {
+        $elements[$key]['#wrapper_attributes']['class'][] = 'checkbox';
+      }
+      if (isset($elements[$key]['#type']) && ($elements[$key]['#type'] == 'radio')) {
+        $elements[$key]['#wrapper_attributes']['class'][] = 'radio';
+      }
+
+      // Recursively process children
+      if (!empty($elements[$key])) {
+        _bootstrap5_lite_add_wrapper_attributes($elements[$key]);
+      }
+    }
   }
 }
 
